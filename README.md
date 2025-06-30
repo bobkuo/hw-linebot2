@@ -28,11 +28,13 @@
 當使用者進入 Bot，會看到一個圖文選單，包含以下三個主要功能：
 
 ### 📷 圖文選單介面
-![圖文選單](images/main_menu.jpg)
+<img src="images/main_menu.jpg" alt="圖文選單" width="500"/>
 
 ---
 
 ### 📰 最新消息
+
+<img src="images/latest_news.jpg" alt="最新消息" width="500"/>
 
 - 點擊「最新消息」後，會出現 Quick Reply 按鈕選單，使用者可選擇：
   - 中央氣象署
@@ -43,6 +45,8 @@
 ---
 
 ### 🏠 附近避難所
+
+<img src="images/nearet_shelters.jpg" alt="附近避難所" width="500"/>
 
 1. 點擊圖文選單中的「附近避難所」
 2. 出現 Quick Reply 按鈕「📍傳送我的位置」
@@ -63,7 +67,7 @@
 
 - 點擊「緊急應變」後，會出現 Quick Reply 選單
 
-![緊急應變選單](images/quick_reply_options.jpg)
+<img src="images/quick_reply_options.jpg" alt="緊急應變選單" width="500"/>
 
 - 使用者可選擇：
   - 地震
@@ -72,7 +76,7 @@
 - 每個主題提供簡要的行動指引與注意事項，幫助使用者在災害發生時冷靜應對
 
 #### 📷 地震應變圖卡
-![地震應變指引](images/earthquake_tips.jpg)
+<img src="images/earthquake_tips.jpg" alt="地震應變指引" width="500"/>
 
 ---
 ## 📬 聯絡開發者
