@@ -1,0 +1,6 @@
+.env
+node_modules
+dump/*
+!dump/.gitkeep
+.DS_Store
+pics
