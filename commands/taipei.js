@@ -52,12 +52,8 @@ async function fetchAllTaipeiShelters() {
   })
 }
 
-export default async (lat, lon) => {
+export default async () => {
   const shelters = await fetchAllTaipeiShelters()
-
-  // 在這裡可以根據lat, lon來篩選或排序最近的避難所
-  // 如果需要使用lat, lon參數，可以在這裡添加距離計算邏輯
-  console.log(`查詢位置: ${lat}, ${lon}`)
 
   return shelters
 }

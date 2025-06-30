@@ -5,7 +5,7 @@ export default async (lat, lon) => {
   // 1. 取得城市和行政區名稱
   const loc = await getCity(lat, lon)
 
-  console.log(loc)
+  console.log(`查詢位置: (${lat}, ${lon}), 位於${loc.city}, ${loc.district}`)
 
   // 2. 根據城市和行政區名稱，決定要使用哪個函式來查找收容所
   if (loc.city === '臺北市') {

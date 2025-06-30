@@ -15,7 +15,7 @@ export async function getWalkingTime(startLat, startLng, endLat, endLng) {
   const distanceKm = distance(startLat, startLng, endLat, endLng)
 
   if (distanceKm < 1) {
-    console.log(`兩點距離 ${distanceKm} 公里，使用估算時間`)
+    console.log(`兩點距離 ${distanceKm.toFixed(2)} 公里，使用估算時間`)
     return estimateWalkingTime(distanceKm)
   }
 

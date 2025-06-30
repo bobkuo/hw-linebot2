@@ -5,8 +5,6 @@ import { getStreetViewImage, getWalkingTime } from '../utils/getGoogle.js'
 import template from '../templates/shelter.js'
 import fs from 'fs'
 
-// 生成 Google Street View 圖片URL
-
 export default async (event) => {
   try {
     const { latitude, longitude } = event.message
@@ -15,7 +13,7 @@ export default async (event) => {
     const data = await findshelters(latitude, longitude)
 
     if (data.length === 0) {
-      await event.reply('此地區暫無避難所資料')
+      await event.reply('此地區暫無避難所資料 (目前只支援台北市)')
       return
     }
 
@@ -30,16 +28,25 @@ export default async (event) => {
       })
       .slice(0, 3)
 
+    // console.log(`距離排序後的避難所資料:`, new_data)
+
     // 3.
     const bubbles = await Promise.all(
-      new_data.map(async (value) => {
+      new_data.map(async (value, index) => {
         // 取得街景圖片
         const streetViewUrl = getStreetViewImage(value.lat, value.lon)
 
+        console.log(`===== 處理第 ${index + 1} 個避難所: ${value.name} =====`)
+
+        // console.log(`街景圖片 URL: ${streetViewUrl}`)
+
         // 取得步行時間（非同步呼叫）
-        const walkingInfo = await getWalkingTime(latitude, longitude, value.lat, value.lon)
+        let walkingInfo = null
+        walkingInfo = await getWalkingTime(latitude, longitude, value.lat, value.lon)
 
         const mapsUrl = `https://www.google.com/maps/dir/${latitude},${longitude}/${value.lat},${value.lon}/@${value.lat},${value.lon},15z/data=!3m1!4b1!4m2!4m1!3e2`
+
+        // console.log(`Google Maps URL: ${mapsUrl}`)
 
         const bubble = template()
 
@@ -50,10 +57,11 @@ export default async (event) => {
 
         // 設定避難所資訊
         // 名稱
-        bubble.body.contents[2].contents[0].contents[0].contents[0].text = value.name
+        bubble.body.contents[2].contents[0].contents[0].contents[0].text = value.name || '名稱不明'
 
         // 地址
-        bubble.body.contents[2].contents[0].contents[1].contents[0].contents[1].text = value.address
+        bubble.body.contents[2].contents[0].contents[1].contents[0].contents[1].text =
+          value.address || '地址不明'
 
         // 地下層資訊
         bubble.body.contents[2].contents[0].contents[1].contents[1].contents[0].contents[1].text =
@@ -79,6 +87,20 @@ export default async (event) => {
         return bubble
       }),
     )
+
+    // console.log('Flex bubbles 生成')
+
+    // fs.writeFileSync(
+    //   './dump/shelter.json',
+    //   JSON.stringify(
+    //     {
+    //       type: 'carousel',
+    //       contents: bubbles,
+    //     },
+    //     null,
+    //     2,
+    //   ),
+    // )
 
     // 發送 Flex Message
     const result = await event.reply({
