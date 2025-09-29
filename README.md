@@ -8,7 +8,9 @@
 
 - 機器人好友 ID：`@129okfor`
 
-點此加入好友：[https://line.me/R/ti/p/@129okfor](https://line.me/R/ti/p/@129okfor)
+<img src="images/qrcode.png" alt="qrcode" width="200"/>
+
+[或點此加入好友](https://line.me/R/ti/p/@129okfor)
 
 ---
 
